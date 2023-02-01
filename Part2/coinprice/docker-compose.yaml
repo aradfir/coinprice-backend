@@ -1,0 +1,28 @@
+version: '3'
+services:
+  api:
+    image: aradfir/coinprice:latest
+    hostname: api
+    env_file:
+      - .env
+    ports:
+      - '${PORT}:8000'
+    restart: unless-stopped
+    depends_on:
+      - redis
+  redis:
+    image: redis
+    hostname: redis
+    volumes:
+      - coinprice_rdb:/data
+    networks:
+        - default
+    ports:
+      - '${REDIS_PORT}:${REDIS_PORT}'
+
+volumes:
+  coinprice_rdb:
+    driver: local
+
+networks:
+  default:

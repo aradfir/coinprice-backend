@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name:  api
+  labels:
+    app:  api
+data:
+  API_URL: https://api.coingecko.com/api/v3/simple/price
+  CACHE_TTL: "3600"
+  COIN_NAME: bitcoin
+  HOST: 0.0.0.0
+  PORT: "8000"
+  REDIS_PORT: "6379"
+  REDIS_URI: redis
